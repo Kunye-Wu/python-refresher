@@ -180,6 +180,31 @@ class Physics:
 
         return acceleration
 
+    def calculate_auv2_angular_acceleration(self, T, alpha, L, l, inertia=100):
+        """
+        Calculates the angular acceleration of the AUV.
+
+        Args:
+            T (np.ndarray): Magnitudes of the forces applied by the thrusters in Newtons.
+            alpha (np.ndarray): Angles of the thrusters in radians.
+            L (float): Distance from the center of mass of the AUV to the thrusters in meters.
+            l (float): Distance from the center of mass of the AUV to the thrusters in meters.
+            inertia (float, optional): Moment of inertia of the AUV in kg * m^2. Default value is 100.
+
+        Returns:
+            float: Angular acceleration of the AUV in radians per second squared (rad/s^2).
+        """
+        # Calculate the torques produced by each thruster
+        torque = T * L * np.sin(alpha)
+
+        # Calculate the net torque
+        net_torque = np.sum(torque)
+
+        # Calculate the angular acceleration
+        angular_acceleration = net_torque / inertia
+
+        return angular_acceleration
+
 
 var = Physics()
 print(var.calculate_buoyancy(30, 15))
@@ -191,3 +216,4 @@ print(var.calculate_torque())
 print(var.calculate_moment_of_inertia())
 print(var.calculate_auv_acceleration())
 print(var.calculate_auv2_acceleration())
+print(var.calculate_auv2_angular_acceleration())
