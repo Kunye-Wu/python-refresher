@@ -113,7 +113,7 @@ class Physics:
         return moment_of_inertia
 
     def calculate_auv_acceleration(
-        F_magnitude, F_angle, mass=100, volume=0.1, thruster_distance=0.5
+        self, F_magnitude, F_angle, mass=100, volume=0.1, thruster_distance=0.5
     ):
         """
         Calculates the acceleration of the AUV in the 2D plane.
@@ -147,7 +147,7 @@ class Physics:
 
         return acceleration
 
-    def calculate_auv2_acceleration(T, alpha, theta, mass=100):
+    def calculate_auv2_acceleration(self, T, alpha, theta, mass=100):
         """
         Calculates the acceleration of the AUV in the 2D plane.
 
@@ -180,7 +180,7 @@ class Physics:
 
         return acceleration
 
-    def calculate_auv2_angular_acceleration(self, T, alpha, L, l, inertia=100):
+    def calculate_auv2_angular_acceleration(self, T, alpha, L, inertia=100):
         """
         Calculates the angular acceleration of the AUV.
 
@@ -207,13 +207,13 @@ class Physics:
 
 
 var = Physics()
-print(var.calculate_buoyancy(30, 15))
+print(var.calculate_buoyancy(30, 25))
 print(var.will_it_float(25, 15))
 print(var.calculate_pressure(50))
-print(var.calculate_acceleration())
-print(var.calculate_angular_acceleration())
-print(var.calculate_torque())
-print(var.calculate_moment_of_inertia())
-print(var.calculate_auv_acceleration())
-print(var.calculate_auv2_acceleration())
-print(var.calculate_auv2_angular_acceleration())
+print(var.calculate_acceleration(45, 35))
+print(var.calculate_angular_acceleration(15, 20))
+print(var.calculate_torque(15, 50))
+print(var.calculate_moment_of_inertia(250, 10))
+print(var.calculate_auv_acceleration(100, 45, 100, 0.1, 0.5))
+print(var.calculate_auv2_acceleration(55, 35, 45, 100))
+print(var.calculate_auv2_angular_acceleration(25, 35, 15, 100))
